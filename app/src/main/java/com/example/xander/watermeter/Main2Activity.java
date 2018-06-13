@@ -50,6 +50,7 @@ public class Main2Activity extends AppCompatActivity {
         request_queue = Volley.newRequestQueue(Main2Activity.this);
 
         string_request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
 
