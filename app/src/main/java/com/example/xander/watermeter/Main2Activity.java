@@ -16,16 +16,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 
 public class Main2Activity extends AppCompatActivity {
 
-    int value = 0;
+    ProgressBar pb = (ProgressBar) findViewById(R.id.progressBarMain);
+    TextView pb_text = (TextView) findViewById(R.id.progressBarText);
+
     long back_pressed;
 
-    RequestQueue mRequestQueue;
-    StringRequest mStringRequest;
+    RequestQueue request_queue;
+    StringRequest string_request;
 
     String url = "http://192.168.43.80/myprojects/Water/assets/data.json";
+
+    String data = "0";
 
     private View.OnClickListener refresh_click = new View.OnClickListener() {
         @Override
@@ -45,37 +51,37 @@ public class Main2Activity extends AppCompatActivity {
     public void getData() {
 
         //RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(this);
+        request_queue = Volley.newRequestQueue(this);
 
         //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        string_request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                ProgressBar pb = (ProgressBar) findViewById(R.id.progressBarMain);
-                TextView pb_text = (TextView) findViewById(R.id.progressBarText);
-                if (value == 1000) {
-                    value = 0;
-                } else {
-                    value += 50;
-                }
-                pb.setProgress(value);
-                pb_text.setText(String.valueOf(value));
+                long data = Integer.parseInt(parseJSON(response));
+                pb.setProgress((int) data);
+                pb_text.setText(String.valueOf(data));
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getApplicationContext(), "Response :" + error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Response :" + error.getCause(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        mRequestQueue.add(mStringRequest);
+        request_queue.add(string_request);
     }
 
-    public void parseJSON(String json) {
-
+    String parseJSON(String json) {
+        try {
+            JSONObject obj = new JSONObject(json);
+            data = obj.get("Liters").toString();
+        } catch (Exception ex) {
+            Toast.makeText(getApplicationContext(), "Response :" + ex.getCause(), Toast.LENGTH_SHORT).show();
+        }
+        return data;
     }
 
 
