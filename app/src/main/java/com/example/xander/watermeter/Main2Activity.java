@@ -9,22 +9,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+
 public class Main2Activity extends AppCompatActivity {
 
     int value = 0;
     long back_pressed;
+
+    RequestQueue mRequestQueue;
+    StringRequest mStringRequest;
+
+    String url = "http://192.168.43.80/myprojects/Water/assets/data.json";
+
     private View.OnClickListener refresh_click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ProgressBar pb = (ProgressBar) findViewById(R.id.progressBarMain);
-            TextView pb_text = (TextView) findViewById(R.id.progressBarText);
-            if (value == 1000) {
-                value = 0;
-            } else {
-                value += 50;
-            }
-            pb.setProgress(value);
-            pb_text.setText(String.valueOf(value));
+
+            getData();
         }
     };
     private View.OnClickListener logout_listener = new View.OnClickListener() {
@@ -37,7 +44,40 @@ public class Main2Activity extends AppCompatActivity {
 
     public void getData() {
 
+        //RequestQueue initialized
+        mRequestQueue = Volley.newRequestQueue(this);
+
+        //String Request initialized
+        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                ProgressBar pb = (ProgressBar) findViewById(R.id.progressBarMain);
+                TextView pb_text = (TextView) findViewById(R.id.progressBarText);
+                if (value == 1000) {
+                    value = 0;
+                } else {
+                    value += 50;
+                }
+                pb.setProgress(value);
+                pb_text.setText(String.valueOf(value));
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(), "Response :" + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mRequestQueue.add(mStringRequest);
     }
+
+    public void parseJSON(String json) {
+
+    }
+
 
     @Override
     public void onBackPressed() {
