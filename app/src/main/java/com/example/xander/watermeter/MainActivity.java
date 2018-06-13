@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    long back_pressed;
+    long BackPress_Iden;
     Cells cells = new Cells();
 
     private View.OnClickListener button_listener = new View.OnClickListener() {
@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (back_pressed + 1000 > System.currentTimeMillis()) {
+        if (BackPress_Iden + 1000 > System.currentTimeMillis()) {
             super.onBackPressed();
         } else {
             Toast.makeText(MainActivity.this, "Press once again to exit", Toast.LENGTH_SHORT).show();
         }
-        back_pressed = System.currentTimeMillis();
+        BackPress_Iden = System.currentTimeMillis();
     }
 }

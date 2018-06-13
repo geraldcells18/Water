@@ -24,7 +24,7 @@ public class Main2Activity extends AppCompatActivity {
     ProgressBar pb = (ProgressBar) findViewById(R.id.progressBarMain);
     TextView pb_text = (TextView) findViewById(R.id.progressBarText);
 
-    long back_pressed;
+    long BackPress_Iden;
 
     RequestQueue request_queue;
     StringRequest string_request;
@@ -50,10 +50,8 @@ public class Main2Activity extends AppCompatActivity {
 
     public void getData() {
 
-        //RequestQueue initialized
-        request_queue = Volley.newRequestQueue(this);
+        request_queue = Volley.newRequestQueue(Main2Activity.this);
 
-        //String Request initialized
         string_request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -87,12 +85,12 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (back_pressed + 1000 > System.currentTimeMillis()) {
+        if (BackPress_Iden + 1000 > System.currentTimeMillis()) {
             super.onBackPressed();
         } else {
             Toast.makeText(Main2Activity.this, "Press once again to exit", Toast.LENGTH_SHORT).show();
         }
-        back_pressed = System.currentTimeMillis();
+        BackPress_Iden = System.currentTimeMillis();
     }
 
     @Override
