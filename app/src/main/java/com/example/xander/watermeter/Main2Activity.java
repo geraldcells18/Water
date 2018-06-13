@@ -41,7 +41,7 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (back_pressed + 500 > System.currentTimeMillis()) {
+        if (back_pressed + 1000 > System.currentTimeMillis()) {
             super.onBackPressed();
         } else {
             Toast.makeText(Main2Activity.this, "Press once again to exit", Toast.LENGTH_SHORT).show();
