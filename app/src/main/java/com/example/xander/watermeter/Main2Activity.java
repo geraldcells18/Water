@@ -65,7 +65,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getApplicationContext(), "Response :" + error.getCause(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Response :" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -77,7 +77,7 @@ public class Main2Activity extends AppCompatActivity {
             JSONObject obj = new JSONObject(json);
             data = obj.get("Liters").toString();
         } catch (Exception ex) {
-            Toast.makeText(getApplicationContext(), "Response :" + ex.getCause(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Response :" + ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return data;
     }
