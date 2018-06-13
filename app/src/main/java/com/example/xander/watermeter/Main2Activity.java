@@ -21,9 +21,6 @@ import org.json.JSONObject;
 
 public class Main2Activity extends AppCompatActivity {
 
-    ProgressBar pb = (ProgressBar) findViewById(R.id.progressBarMain);
-    TextView pb_text = (TextView) findViewById(R.id.progressBarText);
-
     long BackPress_Iden;
 
     RequestQueue request_queue;
@@ -55,6 +52,9 @@ public class Main2Activity extends AppCompatActivity {
         string_request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
+                ProgressBar pb = (ProgressBar) findViewById(R.id.progressBarMain);
+                TextView pb_text = (TextView) findViewById(R.id.progressBarText);
 
                 long data = Integer.parseInt(parseJSON(response));
                 pb.setProgress((int) data);
