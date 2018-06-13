@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Mobile Water Meter</string>
+    <string name="username_placeholder">Username</string>
+    <string name="password_placeholder">Password</string>
+    <string name="button_login">Authenticate</string>
+    <string name="login">Welcome</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="summary">Water Usage</string>
+    <string name="liters">Liters</string>
+    <string name="menu">Menu</string>
+    <!--Menu Items-->
+    <string name="reports">Water Consumption Reports</string>
+    <string name="clarity">Check Water Clarity</string>
+    <string name="toggle">Water Switch</string>
+    <string name="logout">Logout</string>
+    <string name="settings">Configurations</string>
+    <string name="app_title">Mobile Water Meter</string>
+    <string name="confirmation">Confirm Exit?</string>
+</resources>

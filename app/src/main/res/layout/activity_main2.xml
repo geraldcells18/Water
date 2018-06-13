@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Main2Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/top_bar_color"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp">
+
+        <RelativeLayout
+            android:id="@+id/menu"
+            android:layout_width="195dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="0dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/dashboard_ic"
+                android:fontFamily="@font/segoeuil"
+                android:text="@string/dashboard"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/refresh_ic" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="true"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/mainHolder"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:background="@drawable/summary">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@id/progressBarHolder"
+                    android:fontFamily="@font/segoeuil"
+                    android:text="@string/summary"
+                    android:textAllCaps="false"
+                    android:textSize="25sp" />
+
+                <RelativeLayout
+                    android:id="@+id/progressBarHolder"
+                    android:layout_width="185dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginStart="10dp">
+
+                    <ProgressBar
+                        android:id="@+id/progressBarBack"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_centerInParent="true"
+                        android:max="100"
+                        android:progress="100"
+                        android:progressDrawable="@drawable/progress_bar_back" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarMain"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_centerInParent="true"
+                        android:alpha="0.9"
+                        android:max="1000"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/progress_bar" />
+
+                    <TextView
+                        android:id="@+id/progressBarText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="76dp"
+                        android:fontFamily="@font/segoeuil"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="125dp"
+                        android:fontFamily="@font/segoeuil"
+                        android:gravity="center"
+                        android:text="@string/liters"
+                        android:textSize="19sp" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/menu_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+                <!--Scrollable Views Here!-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/menu_items"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/real_time_ic"
+                        android:fontFamily="@font/segoeuil"
+                        android:padding="5dp"
+                        android:text="@string/reports"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/menu_items"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/clarity"
+                        android:fontFamily="@font/segoeuil"
+                        android:padding="5dp"
+                        android:text="@string/clarity"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/menu_items"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/water_switch"
+                        android:fontFamily="@font/segoeuil"
+                        android:padding="5dp"
+                        android:text="@string/toggle"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/menu_items"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/settings_ic"
+                        android:fontFamily="@font/segoeuil"
+                        android:padding="5dp"
+                        android:text="@string/settings"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/logout_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/menu_items"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/logout_ic"
+                        android:fontFamily="@font/segoeuil"
+                        android:padding="5dp"
+                        android:text="@string/logout"
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

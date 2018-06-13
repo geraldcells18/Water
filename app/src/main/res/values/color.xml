@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#348AC7</color>
+    <color name="colorPrimaryDark">#348AC7</color> <!--Upper Task Bar Color-->
+    <color name="colorAccent">#7ec0ee</color>
+    <color name="text_boxColor">#e7e5e5</color>
+    <color name="hint_text_color">#d6d6d6</color>
+    <color name="text_box_bottom_color">#d7d7d7</color>
+    <color name="top_bar_color">#3e91cc</color>
+</resources>
