@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 cells.MessageBox("Kindly enter your username.", mess_title, MainActivity.this);
             } else if (password.isEmpty()) {
                 cells.MessageBox("Kindly enter your password.", mess_title, MainActivity.this);
-            } else if (username.equals("dua") && password.equals("lipa")) {
+            } else if (username.equals("admin") && password.equals("admin")) {
                 ChangeActivity();
             } else {
                 cells.MessageBox("Invalid username or password.", mess_title, MainActivity.this);
