@@ -98,6 +98,8 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        getData();
+
         ImageButton refresh = (ImageButton) findViewById(R.id.refresh);
         refresh.setOnClickListener(refresh_click);
 
