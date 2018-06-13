@@ -35,9 +35,6 @@ public class Main2Activity extends AppCompatActivity {
         }
     };
 
-    public void getData() {
-
-    }
 
     @Override
     public void onBackPressed() {
