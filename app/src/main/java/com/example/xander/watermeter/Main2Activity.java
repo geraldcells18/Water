@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class Main2Activity extends AppCompatActivity {
 
-    long BackPress_Iden;
+    long BackPress;
 
     RequestQueue request_queue;
     StringRequest string_request;
@@ -86,12 +86,12 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (BackPress_Iden + 1000 > System.currentTimeMillis()) {
+        if (BackPress + 1000 > System.currentTimeMillis()) {
             super.onBackPressed();
         } else {
             Toast.makeText(Main2Activity.this, "Press once again to exit", Toast.LENGTH_SHORT).show();
         }
-        BackPress_Iden = System.currentTimeMillis();
+        BackPress = System.currentTimeMillis();
     }
 
     @Override
