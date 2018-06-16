@@ -1,6 +1,7 @@
 package com.example.xander.watermeter;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,17 +32,32 @@ public class Main2Activity extends AppCompatActivity {
 
     String data = "0";
 
+    int status = 0;
+
     private View.OnClickListener refresh_click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            ProgressDialog progressDialog = new ProgressDialog(Main2Activity.this);
+            final ProgressDialog progressDialog = new ProgressDialog(Main2Activity.this);
+            final String TAG = "alt";
+            string_request.setTag(TAG);
             progressDialog.setTitle(R.string.app_title);
             progressDialog.setMessage("Fetching data");
-            progressDialog.setCancelable(false);
+            progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    progressDialog.dismiss();
+                    request_queue.cancelAll(Main2Activity.this);
+                    status = 0;
+                }
+            });
+            progressDialog.setMessage(string_request.getTag().toString());
             progressDialog.show();
             getData();
-            progressDialog.dismiss();
+            if (status == 1) {
+                progressDialog.dismiss();
+                status = 0;
+            }
         }
     };
     private View.OnClickListener logout_listener = new View.OnClickListener() {
@@ -52,7 +68,7 @@ public class Main2Activity extends AppCompatActivity {
         }
     };
 
-    public void getData() {
+    int getData() {
 
         request_queue = Volley.newRequestQueue(Main2Activity.this);
 
@@ -67,17 +83,19 @@ public class Main2Activity extends AppCompatActivity {
                 long data = Integer.parseInt(parseJSON(response));
                 pb.setProgress((int) data);
                 pb_text.setText(String.valueOf(data));
+                status = 1;
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                status = 0;
                 Toast.makeText(getApplicationContext(), "Response :" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
         request_queue.add(string_request);
+        return status;
     }
 
     String parseJSON(String json) {
