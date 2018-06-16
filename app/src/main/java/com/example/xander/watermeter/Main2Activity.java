@@ -1,5 +1,6 @@
 package com.example.xander.watermeter;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,13 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
+            ProgressDialog progressDialog = new ProgressDialog(Main2Activity.this);
+            progressDialog.setTitle(R.string.app_title);
+            progressDialog.setMessage("Fetching data");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
             getData();
+            progressDialog.dismiss();
         }
     };
     private View.OnClickListener logout_listener = new View.OnClickListener() {
