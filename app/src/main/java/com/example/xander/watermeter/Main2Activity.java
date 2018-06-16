@@ -34,28 +34,36 @@ public class Main2Activity extends AppCompatActivity {
 
     int status = 0;
 
+    Cells cells = new Cells();
+
     private View.OnClickListener refresh_click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
             final ProgressDialog progressDialog = new ProgressDialog(Main2Activity.this);
-            final String TAG = "alt";
+
+            final String TAG = "object_tag";
             string_request.setTag(TAG);
+
+            progressDialog.setCancelable(false);
             progressDialog.setTitle(R.string.app_title);
             progressDialog.setMessage("Fetching data");
+
             progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     progressDialog.dismiss();
-                    request_queue.cancelAll(Main2Activity.this);
+                    request_queue.cancelAll(TAG);
                     status = 0;
                 }
             });
-            progressDialog.setMessage(string_request.getTag().toString());
             progressDialog.show();
             getData();
             if (status == 1) {
+                request_queue.cancelAll(TAG);
                 progressDialog.dismiss();
+                String mess = "An error occured while fetching the data" + "\n" + "Kindly check your internet connection";
+                cells.MessageBox(mess, "Unable to fetch data", Main2Activity.this);
                 status = 0;
             }
         }
@@ -63,7 +71,6 @@ public class Main2Activity extends AppCompatActivity {
     private View.OnClickListener logout_listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Cells cells = new Cells();
             cells.changeActivity(Main2Activity.this, MainActivity.class, false);
         }
     };
@@ -90,7 +97,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 status = 0;
-                Toast.makeText(getApplicationContext(), "Response :" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Response :" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
